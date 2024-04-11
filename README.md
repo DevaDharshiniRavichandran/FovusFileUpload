@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Project Title: Fovus File Upload System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+This project implements a serverless file processing system using AWS services. It features a responsive web UI built with ReactJS that allows users to input text and upload a file. The file is uploaded directly to S3, and the input details are saved in a DynamoDB table. When a new item is added to the DynamoDB table, a VM instance (EC2) is automatically triggered to process the file. Once the file is processed, the output is uploaded back to S3, and the DynamoDB table is updated with the output details before the VM is terminated.
 
-## Available Scripts
+## System Components
+- **ReactJS Web UI**
+- **Amazon S3**
+- **Amazon DynamoDB** 
+- **Amazon EC2** 
+- **AWS Lambda** 
+- **API Gateway**
+- **Amazon DynamoDB Streams**
+- **AWS CDK**
 
-In the project directory, you can run:
+## Functionality
+1. **Upload**: The user inputs text and chooses a file to upload. The file is uploaded to S3, and the input details are stored in DynamoDB.
+2. **Process**: A VM is spun up to process the file. It retrieves the input file and text from S3 and DynamoDB, respectively.
+3. **Save Output**: After processing, the output file is saved to S3, and its details are logged in DynamoDB.
+4. **Cleanup**: The VM is terminated after the process is complete to ensure cost-efficiency.
 
-### `npm start`
+## How to Use
+1. **Start the Web UI**: Open the web interface provided by the ReactJS application.
+2. **Enter Text**: Type in the text input box.
+3. **Upload File**: Choose and upload the file you wish to process.
+4. **Submit**: Click the 'Submit' button to start the upload and processing sequence.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Prerequisites
+- AWS Account
+- Configured AWS CLI
+- Node.js and npm installed
+- ReactJS knowledge for UI modifications
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation & Setup
+1. Clone the repository to your local machine.
+2. Navigate to the project directory and install the necessary npm packages:
+   ```sh
+   npm install
+   ```
+3. Start the React development server:
+   ```sh
+   npm start
+   ```
+4. Deploy the backend resources using AWS CDK:
+   ```sh
+   cdk deploy
+   ```
 
-### `npm test`
+## AWS Setup
+- Ensure you have the necessary IAM roles and policies configured for S3, DynamoDB, EC2, and Lambda.
+- Set up an API Gateway to trigger Lambda functions.
+- Use AWS CDK scripts located in the `infra` directory to set up your infrastructure.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Local Development
+- For local development, you can use the AWS SAM CLI to invoke Lambda functions locally and simulate API Gateway locally.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Deployment
+- Use the AWS CDK to deploy your infrastructure and GitHub Actions or other CI/CD pipelines to automate deployment of your React application.
