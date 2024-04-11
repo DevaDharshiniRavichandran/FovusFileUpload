@@ -3,6 +3,11 @@ import base64
 import json
 from datetime import datetime
 
+import os
+import logging
+# Setup logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 # Initialize AWS clients with environment variables
 ec2_client = boto3.client('ec2', region_name=os.environ['AWS_REGION'])
