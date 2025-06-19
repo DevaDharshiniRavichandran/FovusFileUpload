@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="serverless_file_system.png" alt="Serverless file system" width="600"/>
+</p>
+
 # Project Title: Serverless File Processing System on AWS
 ![Serverless file system](serverless_file_system.png)
 ## Overview
