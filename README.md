@@ -3,7 +3,6 @@
 </p>
 
 # Project Title: Serverless File Processing System on AWS
-![Serverless file system](serverless_file_system.png)
 ## Overview
 This project implements a serverless file processing system using AWS services. It features a responsive web UI built with ReactJS that allows users to input text and upload a file. The file is uploaded directly to S3, and the input details are saved in a DynamoDB table. When a new item is added to the DynamoDB table, a VM instance (EC2) is automatically triggered to process the file. Once the file is processed, the output is uploaded back to S3, and the DynamoDB table is updated with the output details before the VM is terminated.
 
